@@ -47,7 +47,7 @@ try:
     client_gs = gspread.authorize(creds)
     
     # ⚠️ PENTING: Paste link URL Google Sheets "Database Keuangan AI" kamu di sini!
-    sheet = client_gs.open_by_url("PASTE_LINK_GOOGLE_SHEETS_KEUANGAN_DI_SINI").sheet1 
+    sheet = client_gs.open_by_url("https://docs.google.com/spreadsheets/d/1_72E-3eepzNO2dJRIiOFb1xWc64bu_4n44AivjgEbXQ/edit?gid=0#gid=0").sheet1 
 except Exception as e:
     st.error(f"⚠️ Gagal terhubung ke Google Sheets. Error: {e}")
     st.stop()
