@@ -210,8 +210,7 @@ with tab_ai:
                         config=types.GenerateContentConfig(temperature=0.0)
                     )
                     
-                    result_text = response.text.replace("```json", "").replace("
-```", "").strip()
+                    result_text = response.text.replace("```json", "").replace("```", "").strip()
                     data = json.loads(result_text)
                     
                     tanggal = data.get("tanggal", datetime.utcnow().strftime("%Y-%m-%d"))
