@@ -46,7 +46,7 @@ try:
     creds = Credentials.from_service_account_info(kunci_json, scopes=scopes)
     client_gs = gspread.authorize(creds)
     
-    # ⚠️ PENTING: Paste kembali link URL Google Sheets "Database Keuangan AI" kamu di sini!
+    # ⚠️ JANGAN LUPA: Ganti teks di bawah ini dengan link URL Google Sheets Keuanganmu!
     sheet = client_gs.open_by_url("https://docs.google.com/spreadsheets/d/1_72E-3eepzNO2dJRIiOFb1xWc64bu_4n44AivjgEbXQ/edit?gid=0#gid=0").sheet1 
 except Exception as e:
     st.error(f"⚠️ Gagal terhubung ke Google Sheets. Error: {e}")
@@ -136,3 +136,25 @@ with col_chart:
 
 # ==================================
 # AREA INPUT: HYBRID SYSTEM (MANUAL & AI)
+# ==================================
+st.markdown("<br>", unsafe_allow_html=True)
+st.markdown(f'<div class="card"><h3>📥 Tambah Transaksi ({nama_pengguna})</h3></div>', unsafe_allow_html=True)
+
+tab_manual, tab_ai = st.tabs(["📝 Catat Manual (Tanpa Struk)", "📷 Pindai Struk / Bukti Transfer (Otomatis)"])
+
+with tab_manual:
+    st.markdown("<br>", unsafe_allow_html=True)
+    with st.form("form_pencatatan_manual", clear_on_submit=True):
+        col_m1, col_m2 = st.columns(2)
+        with col_m1:
+            tgl_manual = st.date_input("Tanggal Transaksi", value=datetime.utcnow() + timedelta(hours=7))
+            ket_manual = st.text_input("Keterangan Pengeluaran", placeholder="Contoh: Jajan Bakso, Bayar Parkir Pasar")
+        with col_m2:
+            kat_manual = st.selectbox("Pilih Kategori", daftar_kategori)
+            nom_manual = st.number_input("Nominal Pengeluaran (Rp)", min_value=0, step=500, value=0)
+            
+        btn_simpan_manual = st.form_submit_button("💾 Simpan Catatan")
+        
+        if btn_simpan_manual:
+            if ket_manual.strip() != "" and nom_manual > 0:
+                format_tgl = tgl_
