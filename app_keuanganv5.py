@@ -11,7 +11,7 @@ from datetime import datetime, timedelta
 # ==================================
 # PAGE CONFIG & CSS
 # ==================================
-st.set_page_config(page_title="ScanStruk AI V5", page_icon="🧾", layout="wide")
+st.set_page_config(page_title="ScanZii", page_icon="🧾", layout="wide")
 
 st.markdown("""
 <style>
